@@ -1,7 +1,7 @@
 #ifndef _CGBASICTYPES_H_
 #define _CGBASICTYPES_H_
 
-#define CG_VERSION "1.7.0"
+#define CG_VERSION "1.7.1"
 #define CG_DATE    "$Date: 1998/02/10 12:33:42 $"
 
 /**************************************/
