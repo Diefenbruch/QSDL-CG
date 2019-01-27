@@ -15,6 +15,10 @@
 # -) make depend    : alle Abhaengigkeiten zwischen Projektdateien feststellen
 # -) make clean     : Objektdateien (*.o) und temporaere Dateien entfernen
 # -) make veryclean : make clean + rcsclean + alle Postscriptdateien entfernen
+# -) make git-pull  : pull sources from github
+# -) make git-push  : push sources to github
+# -) make git-add   : add changed sources to git staging
+# -) make git-commit: commit staged sources to git HEAD
 # -) make postscript: Postscriptdateien aus alle *.h Dateien erzeugen
 # -) make print     : alle *.h Dateien ausdrucken
 # -) make backup    : Backup von allen *.cpp *.h Dateien und dem Makefile
@@ -150,8 +154,11 @@ UNCOMPRESS = gzip -d
                          # Befehl zum Dekomprimieren von Dateien
 COMPRESS_SUFFIX = gz
                          # Endung welche das Komprimierungsprogramm verwendet
-EDITOR = jove
+EDITOR = nano
                          # Name des verwendeten Editors
+
+GIT = git                # git
+
 TAGS = ctags -t
                          # Programm zum Erzeugen von Sourcebrowsing-Infos
                          # (wo ist eine bestimmte Funktion definiert?, etc)
@@ -497,6 +504,22 @@ install-includes: $(HEADERS)
 install: install-includes install-lib
 
 release: install
+
+git-pull:
+	@echo Pulling sources form github...
+	$(GIT) pull
+
+git-add:
+	@echo Staging changed local sources...
+	$(GIT) add -A
+
+git-commit:
+	@echo Committing changed local sources...
+	$(GIT) commit
+
+git-push:
+	@echo Pushing sources to github...
+	$(GIT) push
 
 postscript: $(HEADERS) $(PSDIR)
 	@for X in $(HEADERS); do \
