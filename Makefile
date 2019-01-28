@@ -2,7 +2,7 @@
 # Makefile fuer den QUEST C++-Codegenerator
 #
 #
-# $Author: hirche $
+# Author: Marc Diefenbruch
 # $Date: 1998/02/19 16:07:31 $
 #
 # (C) 1995 Universitaet GH Essen
@@ -484,6 +484,16 @@ $(PSDIR):
 		echo Creating $(PSDIR) ...; \
 		$(MKDIR) $(PSDIR); fi
 
+$(INCDIR): 
+	@if [ ! \( -d $(INCDIR) \) ]; then \
+		echo Creating $(INCDIR) ...; \
+		$(MKDIR) $(INCDIR); fi
+
+$(INCDIR)/CG: $(INCDIR)
+	@if [ ! \( -d $(INCDIR)/DS \) ]; then \
+		echo Creating $(INCDIR)/CG ...; \
+                $(MKDIR) $(INCDIR)/CG; fi
+
 $(DEPFILE):
 	$(TOUCH) $(DEPFILE)
 
@@ -493,13 +503,13 @@ install-lib: $(OUTPUT) $(LIBDIR)
 	@echo Installing new library in $(LIBDIR) ...
 	$(CP)  $(OUTPUT) $(LIBDIR)
 
-install-includes: $(HEADERS)
+install-includes: $(HEADERS) $(INCDIR)/CG
 	@echo Deleting old include files from $(INCDIR)/CG ...
 	-$(RM) $(INCDIR)/CG/*.h
 	@echo Installing new include files in $(INCDIR)/CG ...
 	for X in $(HEADERS); do \
 		$(CP)  $${X} $(INCDIR)/CG;\
-    $(CHMOD) 660 $(INCDIR)/CG/$${X}; done
+		$(CHMOD) 644 $(INCDIR)/CG/$${X}; done
 
 install: install-includes install-lib
 

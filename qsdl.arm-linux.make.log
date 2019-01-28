@@ -1,0 +1,40 @@
+CGOutput.cpp: In member function 'DSResult CGOutput::WriteImplementation(CGWriter*) const':
+CGOutput.cpp:122:13: warning: variable 'sort' set but not used [-Wunused-but-set-variable]
+   DSSortRef sort;
+             ^~~~
+CGState.cpp: In member function 'DSResult CGState::WriteSaveSetImplementation(CGWriter*) const':
+CGState.cpp:245:21: warning: variable 'state_name' set but not used [-Wunused-but-set-variable]
+   DSString         *state_name;
+                     ^~~~~~~~~~
+CGState.cpp: In member function 'DSResult CGState::WriteTypeInit(CGWriter*) const':
+CGState.cpp:827:7: warning: case value '3' not in enumerated type 'DSSaveType' [-Wswitch]
+       case 3:
+       ^~~~
+CGStruct.cpp: In member function 'DSResult CGStruct::WriteFields(CGWriter*) const':
+CGStruct.cpp:698:16: warning: variable 'pos' set but not used [-Wunused-but-set-variable]
+   CGPos        pos;
+                ^~~
+CGSynonym.cpp: In member function 'virtual DSResult CGSynonym::Write(DSWriter*, DSCardinal) const':
+CGSynonym.cpp:100:12: warning: variable 'result' set but not used [-Wunused-but-set-variable]
+   DSResult result;
+            ^~~~~~
+CGTransition.cpp: In member function 'virtual DSResult CGTransition::DissolveDecision(DSDecision*, DSObject*, DSString*, DSCardinal&)':
+CGTransition.cpp:487:12: warning: variable 'status' set but not used [-Wunused-but-set-variable]
+   DSResult status;
+            ^~~~~~
+CGTransition.cpp:488:16: warning: variable 'nextstate' set but not used [-Wunused-but-set-variable]
+   DSNextState *nextstate;
+                ^~~~~~~~~
+CGVariable.cpp: In member function 'virtual DSResult CGVariable::Write(DSWriter*, DSCardinal) const':
+CGVariable.cpp:133:12: warning: variable 'result' set but not used [-Wunused-but-set-variable]
+   DSResult result;
+            ^~~~~~
+CGVariable.cpp: In member function 'DSResult CGVariable::WriteProcessFormalParamImplementation(CGWriter*) const':
+CGVariable.cpp:349:11: warning: variable 'pos' set but not used [-Wunused-but-set-variable]
+   CGPos   pos;
+           ^~~
+CGVariableAccessField.cpp: In member function 'DSResult CGVariableAccessField::WriteVariableAccessField(CGWriter*) const':
+CGVariableAccessField.cpp:98:11: warning: variable 'pos' set but not used [-Wunused-but-set-variable]
+   CGPos   pos;
+           ^~~
+ar: creating obj/arm-linux/libCG.a
