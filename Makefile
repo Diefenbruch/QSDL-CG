@@ -445,7 +445,7 @@ $(OUTPUT): $(OBJS)
 	$(AR) $(ARFLAGS) $(OUTPUT) $(OBJS) \
 		2>> $(LOGFILE)
 
-$(OBJDIR)/%.o: %.cpp
+$(OBJDIR)/%.o: %.cpp $(OBJDIR)
 	@echo Compiling $< ...
 	$(C++) -c $(CFLAGS) $(TFLAGS) $(PFLAGS) $(DEFINES) $(INCLUDES) $< -o $@ 2>> $(LOGFILE)
 
