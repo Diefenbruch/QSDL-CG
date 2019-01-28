@@ -490,7 +490,7 @@ $(INCDIR):
 		$(MKDIR) $(INCDIR); fi
 
 $(INCDIR)/CG: $(INCDIR)
-	@if [ ! \( -d $(INCDIR)/DS \) ]; then \
+	@if [ ! \( -d $(INCDIR)/CG \) ]; then \
 		echo Creating $(INCDIR)/CG ...; \
                 $(MKDIR) $(INCDIR)/CG; fi
 
