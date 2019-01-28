@@ -208,7 +208,7 @@ CHMOD = /bin/chmod
                          # Befehl zum Aendern der Dateiattribute
 TOUCH = touch
                          # Befehl zum Aktualisieren des Dateidatums
-MKDIR = mkdir
+MKDIR = mkdir -p
                          # Befehl zum Erzeugen von Directories
 ifeq ($(TOOLS), GNU)
 
