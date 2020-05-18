@@ -35,7 +35,7 @@
 /***************************************************************************
  * CGMake(): Konstruktor
  *            -> sys: Name des Systems
- *            Seiteneffekte: keine                                
+ *            Seiteneffekte: keine
  ***************************************************************************/
 
 CGMake::CGMake(void)
@@ -44,7 +44,7 @@ CGMake::CGMake(void)
 
 /***************************************************************************
  * ~CGMake(): Destruktor
- *             Seiteneffekte: keine                                
+ *             Seiteneffekte: keine
  ***************************************************************************/
 
 CGMake::~CGMake(void)
@@ -126,6 +126,7 @@ DSResult CGMake::CGMakefile(CGWriter *writer)
   InsertString(makefile, "\tcase `uname -s` in \\", 0, CG_WITH_EOL);
   InsertString(makefile, "\t\tLinux)\tcase `uname -m` in \\", 0, CG_WITH_EOL);
   InsertString(makefile, "\t\t\t\t\ti?86)\techo ix86-linux;; \\", 0, CG_WITH_EOL);
+  InsertString(makefile, "\t\t\t\t\tx86_64)\techo x86_64-linux;; \\", 0, CG_WITH_EOL);
   InsertString(makefile, "\t\t\t\t\tarm*)\techo arm-linux;; \\", 0, CG_WITH_EOL);
   InsertString(makefile, "\t\t\t\t\tsparc)\techo sparc-linux;; \\", 0, CG_WITH_EOL);
   InsertString(makefile, "\t\t\t\t\t*)\t\techo unknown-linux;; \\", 0, CG_WITH_EOL);
