@@ -435,18 +435,20 @@ TEST_SRCS =\
 OBJS = $(addprefix $(OBJDIR)/, $(SRCS:.cpp=.o))
 TEST_OBJS= $(addprefix $(OBJDIR)/, $(TEST_SRCS:.cpp=.o))
 
-######################
-# 7. Makefileregeln: #
-######################
+##################################################
+# 7. Makefileregeln:                             #
+#    Abhängigkeiten hinter dem | Symbol sind     #
+#    logische aber keine Zeit-Abhängigkeiten!    #
+##################################################
 
-default: clean-rubbish $(OBJDIR) $(OUTPUT)
+default: clean-rubbish $(OUTPUT) | $(OBJDIR)
 
 $(OUTPUT): $(OBJS)
 	echo Constructing $(OUTPUT) ...
 	$(AR) $(ARFLAGS) $(OUTPUT) $(OBJS) \
 		2>> $(LOGFILE)
 
-$(OBJS): $(OBJDIR)
+$(OBJS): | $(OBJDIR)
 
 $(OBJDIR)/%.o: %.cpp
 	@echo Compiling $< ...
@@ -467,32 +469,32 @@ $(OBJBASEDIR):
 		echo Creating $(OBJBASEDIR) ...; \
 		$(MKDIR) $(OBJBASEDIR); fi
 
-$(OBJDIR): $(OBJBASEDIR)
+$(OBJDIR): | $(OBJBASEDIR)
 	@if [ ! \( -d $(OBJDIR) \) ]; then \
 		echo Creating $(OBJDIR) ...; \
 		$(MKDIR) $(OBJDIR); fi
 
-$(LIBDIR): 
+$(LIBDIR):
 	@if [ ! \( -d $(LIBDIR) \) ]; then \
 		echo Creating $(LIBDIR) ...; \
 		$(MKDIR) $(LIBDIR); fi
 
-$(BINDIR): 
+$(BINDIR):
 	@if [ ! \( -d $(BINDIR) \) ]; then \
 		echo Creating $(BINDIR) ...; \
 		$(MKDIR) $(BINDIR); fi
 
-$(PSDIR): 
+$(PSDIR):
 	@if [ ! \( -d $(PSDIR) \) ]; then \
 		echo Creating $(PSDIR) ...; \
 		$(MKDIR) $(PSDIR); fi
 
-$(INCDIR): 
+$(INCDIR):
 	@if [ ! \( -d $(INCDIR) \) ]; then \
 		echo Creating $(INCDIR) ...; \
 		$(MKDIR) $(INCDIR); fi
 
-$(INCDIR)/CG: $(INCDIR)
+$(INCDIR)/CG: | $(INCDIR)
 	@if [ ! \( -d $(INCDIR)/CG \) ]; then \
 		echo Creating $(INCDIR)/CG ...; \
                 $(MKDIR) $(INCDIR)/CG; fi
@@ -500,13 +502,13 @@ $(INCDIR)/CG: $(INCDIR)
 $(DEPFILE):
 	$(TOUCH) $(DEPFILE)
 
-install-lib: $(OUTPUT) $(LIBDIR)
+install-lib: $(OUTPUT) | $(LIBDIR)
 	@echo Deleting old library from $(LIBDIR) ...
 	-$(RM) $(LIBDIR)/$(OUTPUT)
 	@echo Installing new library in $(LIBDIR) ...
 	$(CP)  $(OUTPUT) $(LIBDIR)
 
-install-includes: $(HEADERS) $(INCDIR)/CG
+install-includes: $(HEADERS) | $(INCDIR)/CG
 	@echo Deleting old include files from $(INCDIR)/CG ...
 	-$(RM) $(INCDIR)/CG/*.h
 	@echo Installing new include files in $(INCDIR)/CG ...
